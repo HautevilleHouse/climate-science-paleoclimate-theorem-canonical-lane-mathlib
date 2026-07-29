@@ -1,0 +1,24 @@
+import canonicalLaneMathlib.AdmissibleClass
+import ClimateSciencePaleoclimateTheoremCanonicalLaneLean.EnergyBalanceModel
+import ClimateSciencePaleoclimateTheoremCanonicalLaneLean.MilankovitchCycles
+import ClimateSciencePaleoclimateTheoremCanonicalLaneLean.IsotopicPaleothermometry
+import ClimateSciencePaleoclimateTheoremCanonicalLaneLean.DansgaardOeschgerEvents
+
+namespace HautevilleHouse
+namespace ClimateSciencePaleoclimateTheoremCanonicalLaneLean
+
+structure PaleoclimateObject where
+  energyModel : EnergyBalanceModelPackage
+  milankovitch : MilankovitchCyclesPackage
+  isotopic : IsotopicPaleothermometryPackage
+  doEvents : DansgaardOeschgerEventsPackage
+  energyModelClosed : EnergyBalanceModelClosed energyModel
+  milankovitchClosed : MilankovitchCyclesClosed milankovitch
+  isotopicClosed : IsotopicPaleothermometryClosed isotopic
+  doEventsClosed : DansgaardOeschgerEventsClosed doEvents
+
+def PaleoclimateWitnessClosed (O : PaleoclimateObject) : Prop :=
+  O.energyModelClosed ∧ O.milankovitchClosed ∧ O.isotopicClosed ∧ O.doEventsClosed
+
+end ClimateSciencePaleoclimateTheoremCanonicalLaneLean
+end HautevilleHouse
